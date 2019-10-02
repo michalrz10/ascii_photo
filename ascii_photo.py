@@ -34,7 +34,7 @@ class Model:
 
 def images(model):
 	tab=[]
-	font=ImageFont.truetype('C:\\Users\\michalrz\\Desktop\\Programy-Gry\\Teemo-game\\font\\arial.ttf',6)
+	font=ImageFont.truetype('arial.ttf',6)
 	for i in model.chars:
 		temp=Image.new('L',(6,8),255)
 		d=ImageDraw.Draw(temp)
@@ -52,7 +52,7 @@ def presentation(model):
 	
 def black_white(name,model):
 	tab=images(model)
-	im=Image.open('C:\\Users\\michalrz\\Desktop\\jakieś_grafiki\\'+name)
+	im=Image.open(name)
 	im=im.crop((0,0,im.size[0]-im.size[0]%6,im.size[1]-im.size[1]%8))
 	im=im.convert('L')
 	n=Image.new('L',im.size,255)
@@ -61,12 +61,12 @@ def black_white(name,model):
 			p=np.argmax(model.predict(list(im.crop((i*6,j*8,i*6+6,j*8+8)).getdata())))
 			n.paste(tab[p],(i*6,j*8))
 	n.show()
-	n.save('C:\\Users\\michalrz\\Desktop\\jakieś_grafiki\\ascii'+name,"JPEG")
+	n.save('ascii'+name,"JPEG")
 
 def color(name,model):
 	tab=images(model)
-	font=ImageFont.truetype('C:\\Users\\michalrz\\Desktop\\Programy-Gry\\Teemo-game\\font\\arial.ttf',8)
-	imm=Image.open('C:\\Users\\michalrz\\Desktop\\jakieś_grafiki\\'+name)
+	font=ImageFont.truetype('arial.ttf',6)
+	imm=Image.open(name)
 	imm=imm.crop((0,0,imm.size[0]-imm.size[0]%6,imm.size[1]-imm.size[1]%8))
 	im=imm.convert('L')
 	n=Image.new('RGB',im.size,255)
@@ -91,7 +91,7 @@ def color(name,model):
 			
 			n.paste(temp,(i*6,j*8))
 	n.show()
-	n.save('C:\\Users\\michalrz\\Desktop\\jakieś_grafiki\\ascii'+name,"JPEG")
+	n.save('ascii'+name,"JPEG")
 
 
 def learn(model):
@@ -132,9 +132,8 @@ def learn(model):
 		plt.pause(0.0001)
 	model.save()
 
-os.chdir('C:\\Users\\michalrz\\Desktop\\snakem\\ascii')
 model=Model()
 presentation(model)
 learn(model)
-black_white('leonardo-da-vinci-mona-michał.jpg',model)
-color('leonardo-da-vinci-mona-michał.jpg',model)
+black_white('mr-robot.jpg',model)
+color('mr-robot.jpg',model)
