@@ -34,7 +34,7 @@ class Model:
 
 def images(model):
 	tab=[]
-	font=ImageFont.truetype('arial.ttf',6)
+	font=ImageFont.truetype('font\\arial.ttf',6)
 	for i in model.chars:
 		temp=Image.new('L',(6,8),255)
 		d=ImageDraw.Draw(temp)
@@ -65,7 +65,7 @@ def black_white(name,model):
 
 def color(name,model):
 	tab=images(model)
-	font=ImageFont.truetype('arial.ttf',6)
+	font=ImageFont.truetype('font\\arial.ttf',6)
 	imm=Image.open(name)
 	imm=imm.crop((0,0,imm.size[0]-imm.size[0]%6,imm.size[1]-imm.size[1]%8))
 	im=imm.convert('L')
@@ -96,7 +96,6 @@ def color(name,model):
 
 def learn(model):
 	tab=images(model)
-	os.chdir('C:\\Users\\michalrz\\Desktop\\snakem\\ascii')
 	loss=[]
 	score=[]
 	pop=0
